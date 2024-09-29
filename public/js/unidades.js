@@ -19,7 +19,23 @@ function setupEventListeners() {
     const viewButtons = document.querySelectorAll('.view-button');
     const viewModal = document.getElementById('unidad-view-modal');
     const closeViewModalBtn = document.getElementById('close-view-modal');
+<<<<<<< HEAD
 
+=======
+    const userDropdown = document.getElementById("userDropdown");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+
+
+    userDropdown.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("show"); // Mostrar/ocultar el menú desplegable
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!userDropdown.contains(event.target)) {
+            dropdownMenu.classList.remove("show"); // Ocultar el menú si se hace clic fuera
+        }
+    });
+>>>>>>> 23ba4e6 (Primeros cambios)
     // Abrir modal para nuevo registro
     if (nuevoRegistroBtn) {
         nuevoRegistroBtn.addEventListener('click', function () {
@@ -54,7 +70,11 @@ function setupEventListeners() {
 
     // Manejar la edición de una unidad
     editButtons.forEach(button => {
+<<<<<<< HEAD
         button.addEventListener('click', function() {
+=======
+        button.addEventListener('click', function () {
+>>>>>>> 23ba4e6 (Primeros cambios)
             const unidadId = this.dataset.id;
             fetchUnidadData(unidadId, modal, form);
         });
@@ -62,21 +82,33 @@ function setupEventListeners() {
 
     // Manejar la visualización de una unidad
     viewButtons.forEach(button => {
+<<<<<<< HEAD
         button.addEventListener('click', function() {
+=======
+        button.addEventListener('click', function () {
+>>>>>>> 23ba4e6 (Primeros cambios)
             const unidadId = this.dataset.id;
             fetchUnidadDataForView(unidadId, viewModal);
         });
     });
 
     // Manejar el envío del formulario para guardar o actualizar unidad
+<<<<<<< HEAD
     form.addEventListener('submit', function(event) {
+=======
+    form.addEventListener('submit', function (event) {
+>>>>>>> 23ba4e6 (Primeros cambios)
         event.preventDefault();
         saveUnidadData(form, modal);
     });
 
     // Manejar la eliminación de una unidad
     deleteButtons.forEach(button => {
+<<<<<<< HEAD
         button.addEventListener('click', function() {
+=======
+        button.addEventListener('click', function () {
+>>>>>>> 23ba4e6 (Primeros cambios)
             const unidadId = this.dataset.id;
             deleteUnidad(unidadId);
         });

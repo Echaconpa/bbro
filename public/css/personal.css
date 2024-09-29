@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos principales para el cuerpo */
 body {
     font-family: Arial, sans-serif;
@@ -97,6 +98,8 @@ body {
     flex: 1;
 }
 
+=======
+>>>>>>> 23ba4e6 (Primeros cambios)
 h1 {
     color: #005468;
     text-align: center;

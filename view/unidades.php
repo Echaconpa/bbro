@@ -13,6 +13,7 @@
 <body>
     <?php include 'view/sidebar.php'; ?>
     <div class="main-content">
+<<<<<<< HEAD
         <div class="top-bar">
             <div class="search-bar">
                 <input type="text" placeholder="Buscar...">
@@ -21,6 +22,16 @@
                 <img src="/bbro/public/img/user-avatar.png" alt="User Avatar" class="user-avatar">
                 <?php $username = $username ?? 'Invitado'; ?>
                 <span><?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?></span>
+=======
+    <div class="top-bar">
+            <div class="user-info">
+                <img src="/bbro/public/img/user-avatar.png" alt="User Avatar" class="user-avatar" id="userDropdown">
+                <?php $username = $username ?? 'Invitado'; ?>
+                <span id="userDropdown"><?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?></span>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/bbro/logout">Cerrar Sesión</a>
+                </div>
+>>>>>>> 23ba4e6 (Primeros cambios)
             </div>
         </div>
         <div class="content">

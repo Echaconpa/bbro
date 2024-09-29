@@ -19,7 +19,12 @@ function setupEventListeners() {
     const viewButtons = document.querySelectorAll('.view-button');
     const viewModal = document.getElementById('personal-view-modal');
     const closeViewModalBtn = document.getElementById('close-view-modal');
+<<<<<<< HEAD
 
+=======
+    const userDropdown = document.getElementById("userDropdown");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+>>>>>>> 23ba4e6 (Primeros cambios)
     const asignarUnidadBtn = document.querySelector('#asignar-unidad-btn'); // Nuevo botón Asignar Unidad
     const asignarModal = document.querySelector('#asignar-unidad-modal');  // Modal de Asignar Unidad
     const closeAsignarModalBtn = document.querySelector('#close-asignar-modal');
@@ -27,6 +32,19 @@ function setupEventListeners() {
     let selectedPersonalId = null; // Variable para almacenar el ID del personal seleccionado
     let selectedRow = null; // Variable para almacenar la fila seleccionada
 
+<<<<<<< HEAD
+=======
+    userDropdown.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("show"); // Mostrar/ocultar el menú desplegable
+      });
+    
+      document.addEventListener("click", function (event) {
+        if (!userDropdown.contains(event.target)) {
+          dropdownMenu.classList.remove("show"); // Ocultar el menú si se hace clic fuera
+        }
+      });
+
+>>>>>>> 23ba4e6 (Primeros cambios)
     // Abrir modal para nuevo registro
     if (nuevoRegistroBtn) {
         nuevoRegistroBtn.addEventListener('click', function () {

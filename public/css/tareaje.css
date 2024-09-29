@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* General body styling */
 body {
     font-family: Arial, sans-serif;
@@ -62,6 +63,8 @@ body {
     flex: 1;
 }
 
+=======
+>>>>>>> 23ba4e6 (Primeros cambios)
 /* Title styling */
 h1 {
     color: #005468;
@@ -151,7 +154,12 @@ h1 {
     padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+<<<<<<< HEAD
     margin-bottom: 30px;
+=======
+    margin-bottom: 50px; /* Ajuste de espacio extra */
+    z-index: 2; /* Asegúrate de que la leyenda esté por encima de otros elementos */
+>>>>>>> 23ba4e6 (Primeros cambios)
 }
 
 .legend-container h3 {
@@ -195,9 +203,15 @@ h1 {
     background-color: yellow;
 }
 
+<<<<<<< HEAD
 /* Estilo de tabla */
 .table-container {
     margin-top: 20px;
+=======
+/* Table container */
+.table-container {
+    margin-top: 50px; /* Espacio extra para evitar superposición con la leyenda */
+>>>>>>> 23ba4e6 (Primeros cambios)
     overflow-x: auto;
 }
 

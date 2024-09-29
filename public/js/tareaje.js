@@ -1,4 +1,27 @@
+<<<<<<< HEAD
 // public/js/tareaje.js
+=======
+document.addEventListener("DOMContentLoaded", function () {
+    setupEventListeners();
+  });
+
+// Configuración de los event listeners
+function setupEventListeners() {
+    const userDropdown = document.getElementById("userDropdown");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+
+    // Mostrar/ocultar el menú cuando se hace clic en el avatar
+    userDropdown.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("show"); // Mostrar/ocultar el menú desplegable
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!userDropdown.contains(event.target)) {
+          dropdownMenu.classList.remove("show"); // Ocultar el menú si se hace clic fuera
+        }
+  });
+
+>>>>>>> 23ba4e6 (Primeros cambios)
 
 // Función para actualizar los días en la tabla según el mes y el año seleccionado
 function updateDays() {
@@ -7,14 +30,22 @@ function updateDays() {
     const daysContainer = document.querySelector('thead tr'); // Selecciona el contenedor de los días (encabezado de la tabla)
     const days = new Date(year, parseInt(month) + 1, 0).getDate(); // Calcula cuántos días tiene el mes seleccionado
     const daysOfWeek = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']; // Nombres de los días de la semana
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23ba4e6 (Primeros cambios)
     // Limpiar días existentes en el encabezado de la tabla
     daysContainer.innerHTML = `
         <th>ID</th>
         <th>PERSONAL</th>
         <th>DNI</th>
     `;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 23ba4e6 (Primeros cambios)
     // Agregar los nuevos días del mes seleccionado al encabezado
     for (let i = 1; i <= days; i++) {
         const dayOfWeek = daysOfWeek[new Date(year, month, i).getDay()]; // Determina el día de la semana para cada día del mes
@@ -33,7 +64,11 @@ function filterByUnit() {
 }
 
 // Función para exportar la tabla visible a un archivo Excel utilizando SheetJS
+<<<<<<< HEAD
 document.getElementById('exportExcelBtn').addEventListener('click', function() {
+=======
+document.getElementById('exportExcelBtn').addEventListener('click', function () {
+>>>>>>> 23ba4e6 (Primeros cambios)
     // Seleccionar la tabla HTML
     var table = document.querySelector('table');
 
@@ -95,6 +130,7 @@ function enviarDatosTareaje(tareajeData) {
         },
         body: JSON.stringify(tareajeData) // Convertir los datos en una cadena JSON
     })
+<<<<<<< HEAD
     .then(response => response.json()) // Procesar la respuesta como JSON
     .then(data => {
         if (data.success) {
@@ -112,3 +148,23 @@ function enviarDatosTareaje(tareajeData) {
 window.onload = function() {
     updateDays(); // Actualizar los días del mes según el año y mes actual
 };
+=======
+        .then(response => response.json()) // Procesar la respuesta como JSON
+        .then(data => {
+            if (data.success) {
+                alert('Tareaje guardado exitosamente');
+            } else {
+                alert('Hubo un error al guardar el tareaje');
+            }
+        })
+        .catch(error => {
+            console.error('Error al guardar los datos de tareaje:', error);
+        });
+}
+
+// Inicializar la tabla con el mes y año actual
+window.onload = function () {
+    updateDays(); // Actualizar los días del mes según el año y mes actual
+};
+}
+>>>>>>> 23ba4e6 (Primeros cambios)
