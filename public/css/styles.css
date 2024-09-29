@@ -1,0 +1,93 @@
+/* public/css/styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('../img/Fondo1.webp') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.login-form .logo {
+    max-width: 100px; /* Ajusta el tamaño del logo según tus necesidades */
+    margin-bottom: 20px;
+}
+
+.login-form h2 {
+    color: #005468;
+    margin-bottom: 20px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.login-form .user-access {
+    display: block;
+    margin-bottom: 10px;
+    color: #005468;
+    text-decoration: none;
+}
+
+.login-form .forgot-password {
+    margin-top: 10px;
+    color: #005468;
+    text-decoration: none;
+}
+
+.login-form button {
+    background-color: #005468;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.login-form button:hover {
+    background-color: #004355;
+}
+
+.login-form p {
+    color: #333;
+}
+
+.login-form p a {
+    color: #005468;
+    text-decoration: none;
+}
+
+.login-form p a:hover {
+    text-decoration: underline;
+}

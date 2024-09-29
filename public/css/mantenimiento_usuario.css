@@ -1,0 +1,275 @@
+h1 {
+    color: #005468;
+    text-align: center;
+}
+
+/* Botón principal de asistencia */
+.asistencia-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.asistencia-button:hover {
+    background-color: #e6b800;
+}
+
+/* Contenedor de la tabla con desplazamiento horizontal */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    /* Permitir desplazamiento horizontal */
+    margin-top: 20px;
+    -webkit-overflow-scrolling: touch;
+    /* Desplazamiento suave en móviles */
+}
+
+table.display {
+    width: 100%;
+    min-width: 900px;
+    /* Asegurar un ancho mínimo */
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table.display th,
+table.display td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+table.display th {
+    background-color: #005468;
+    color: #ffffff;
+    font-size: 1em;
+}
+
+table.display tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table.display tbody tr:hover {
+    background-color: #ddd;
+}
+
+/* Estilos para los roles */
+.badge-admin {
+    background-color: #a78bfa;
+    color: white;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 0.9em;
+    text-align: center;
+    display: inline-block;
+}
+
+.badge-usuario {
+    background-color: #34d399;
+    color: white;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 0.9em;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Estilos para los botones de acción */
+.action-button {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+}
+
+.edit-button {
+    background-color: #f39c12;
+    /* Naranja para editar */
+    color: white;
+}
+
+.delete-button {
+    background-color: #e74c3c;
+    /* Rojo para eliminar */
+    color: white;
+}
+
+.action-button i {
+    font-size: 16px;
+}
+
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="password"],
+.modal-content input[type="phone"],
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #495057;
+    box-sizing: border-box;
+}
+
+/* Botón en el modal */
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+/* Botón de cerrar */
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos para fijar las primeras columnas */
+.table-container th:nth-child(-n+1),
+.table-container td:nth-child(-n+1) {
+    position: sticky;
+    left: 0;
+    background: #005468;
+    z-index: 1;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    table.display th,
+    table.display td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .user-info {
+        margin-top: 10px;
+    }
+
+    table.display th,
+    table.display td {
+        font-size: 0.8em;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        /* Asegurar que haya un desplazamiento horizontal */
+    }
+}
