@@ -7,28 +7,6 @@ body {
     display: flex;
 }
 
-<<<<<<< HEAD
-.sidebar {
-    width: 250px;
-    background: #005468;
-    /* Color principal de la empresa */
-    color: #fff;
-    height: 100vh;
-    position: fixed;
-    padding-top: 20px;
-}
-
-.sidebar-header {
-    padding: 20px;
-    background: #004355;
-    /* Un tono más oscuro del color principal */
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-=======
->>>>>>> 23ba4e6 (Primeros cambios)
 .menu-list {
     list-style: none;
     padding: 0;

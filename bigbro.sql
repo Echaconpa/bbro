@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-09-2024 a las 07:36:23
+-- Tiempo de generación: 30-09-2024 a las 06:19:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -20,6 +20,39 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bigbro`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `abreviaturas`
+--
+
+CREATE TABLE `abreviaturas` (
+  `id` int(11) NOT NULL,
+  `codigo` varchar(10) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `color_class` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `abreviaturas`
+--
+
+INSERT INTO `abreviaturas` (`id`, `codigo`, `descripcion`, `color_class`) VALUES
+(1, '12D', '12 horas TURNO DIURNO', 'color-12D'),
+(2, '12N', '12 horas TURNO NOCTURNO', 'color-12N'),
+(3, 'X', 'Descanso laboral semanal', 'color-X'),
+(4, 'DTD', 'Descanso Laboral Trabajado DIURNO', 'color-DTD'),
+(5, 'DTN', 'Descanso Laboral Trabajado NOCTURNO', 'color-DTN'),
+(6, 'V', 'Vacaciones', 'color-V'),
+(7, 'DM', 'Descanso Médico', 'color-DM'),
+(8, 'FI', 'Falto injustificado', 'color-FI'),
+(9, 'FJ', 'Falto justificado', 'color-FJ'),
+(10, 'P', 'Permiso', 'color-P'),
+(11, 'PP', 'Permiso Paternidad', 'color-PP'),
+(12, 'MHT', 'Menos horas trabajadas', 'color-MHT'),
+(13, 'FC', 'Feriado calendario', 'color-FC'),
+(14, 'LCGH', 'Licencia con Goce de Haber', 'color-LCGH');
 
 -- --------------------------------------------------------
 
@@ -97,7 +130,7 @@ INSERT INTO `personal` (`id`, `nombres`, `apellidos`, `dni`, `estado_civil`, `te
 (1, 'Elvis Enriquee', 'Chacon Pajuelo', '72125367', 'Municipalidad Metropolitana de Lima', '925346522', 'Ca orfebres Mz. F Lote 19', '929621048', 'Ninguno', 'Activo', '2001-08-16', '2020-02-20', 'AVP con arma', 'Ingles Completo', 'Kame house.jpg', '2024-09-15 18:59:04', '2024-09-17 08:01:33', 1, 1),
 (2, 'Jose', 'Iglesias Reyes', '8765432', 'Casado', '987654123', 'San Juan de Lurigancho', '987456321', 'Con 5 hijos', 'Inactivo', '1990-09-02', '2023-09-20', 'AVP sin arma', 'Conocimiento de Ingles y Computo Completo', 'image.png', '2024-09-15 19:07:03', '2024-09-17 12:08:06', 1, 3),
 (3, 'Armando', 'Torres Julca', '01234567', 'Divorciado', '963852741', 'San Borja', '987412365', 'Tiene 20 hijos', 'Activo', '2000-12-29', '2024-09-15', 'AVP', 'Tiene estudios en ensamblaje', 'foto - copia (2).jpg', '2024-09-15 22:58:47', '2024-09-17 08:12:57', 1, 3),
-(4, 'Elsa', 'Rodriguez', '9876541', 'Viuda', '951789321', 'Villa el Salvador', '01789456', '0', 'Activo', '1980-09-05', '2019-07-12', 'Ejecutiva', 'Ninguna', 'Tokito.jpg', '2024-09-16 03:42:49', '2024-09-17 08:07:35', 1, 4);
+(4, 'Elsa', 'Rodriguez', '9876541', 'Viuda', '951789321', 'Villa el Salvador', '01789456', '0', 'Activo', '1980-09-05', '2019-07-12', 'Ejecutiva', 'Ninguna', 'Tokito.jpg', '2024-09-16 03:42:49', '2024-09-27 03:50:18', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -110,20 +143,6 @@ CREATE TABLE `registros_actividad` (
   `usuario_id` int(11) DEFAULT NULL,
   `accion` varchar(255) NOT NULL,
   `detalles` text DEFAULT NULL,
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `registros_tareas`
---
-
-CREATE TABLE `registros_tareas` (
-  `id` int(11) NOT NULL,
-  `tarea_id` int(11) DEFAULT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
-  `accion` varchar(255) NOT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -194,24 +213,6 @@ CREATE TABLE `sesiones` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tareas`
---
-
-CREATE TABLE `tareas` (
-  `id` int(11) NOT NULL,
-  `unidad_id` int(11) DEFAULT NULL,
-  `nombre_tarea` varchar(100) NOT NULL,
-  `descripcion_tarea` text DEFAULT NULL,
-  `asignado_a` int(11) DEFAULT NULL,
-  `fecha_vencimiento` date DEFAULT NULL,
-  `estado` enum('Pendiente','En Progreso','Completada') DEFAULT 'Pendiente',
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `fecha_actualizacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `unidades`
 --
 
@@ -275,7 +276,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `dni`, `nombre`, `apellido`, `nombre_usuario`, `contrasena`, `correo_electronico`, `telefono`, `rol_id`, `fecha_creacion`, `fecha_actualizacion`, `activo`) VALUES
-(1, '87654321', 'Administrador', 'Uno', 'admin', '$2y$10$kfDG5xn82ZEvDG7f40j9dOG1LTbhz.RFdvBCInYtmnWOEAkfzSoRq', 'admin@bigbro.com', '987654321', 1, '2024-08-27 06:04:27', '2024-09-15 23:07:05', 1),
+(1, '72125367', 'Elvis Enrique', 'Chacon Pajuelo', 'admin', '$2y$10$LWQQUsHBWJ1/jLpYrQwMp..CS7QCHBbdnlAO7Ekgno5/BNS1baSCq', 'admin@bigbro.com', '987654321', 1, '2024-08-27 06:04:27', '2024-09-27 15:31:32', 1),
 (2, '98765432', 'Usuario', 'Uno', 'user', '$2y$10$XAL4UrGKrrk.o67fX0DvSOnWfF4dSM74ei.2XlgBMD79W0ItLqHMy', 'user@bigbbro.com', '987654320', 2, '2024-09-09 04:10:30', '2024-09-15 19:15:39', 1),
 (3, '23456789', 'Administrador', 'Dos', 'admin2', '$2y$10$RFZ4IdSDFcPU.HCdtZYy/eTZboAkhBg2kkhcU/oCiaGnK3VBAu0s2', 'admin2@bigbro.com', '987654322', 1, '2024-09-09 04:20:34', '2024-09-15 19:15:43', 1),
 (4, '8765412', 'Usuario', 'Dos', 'user2', '$2y$10$CASRm4xZbA/JyfBQ6nhAt.AndI7OSvjMxLipEv3XQJbEoaOej/AbG', 'user2@bigbro.com', '987654123', 2, '2024-09-11 06:38:54', '2024-09-15 19:15:47', 1);
@@ -283,6 +284,12 @@ INSERT INTO `usuarios` (`id`, `dni`, `nombre`, `apellido`, `nombre_usuario`, `co
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `abreviaturas`
+--
+ALTER TABLE `abreviaturas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `logs`
@@ -318,14 +325,6 @@ ALTER TABLE `registros_actividad`
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
--- Indices de la tabla `registros_tareas`
---
-ALTER TABLE `registros_tareas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `tarea_id` (`tarea_id`),
-  ADD KEY `usuario_id` (`usuario_id`);
-
---
 -- Indices de la tabla `restablecimientos_contrasena`
 --
 ALTER TABLE `restablecimientos_contrasena`
@@ -356,14 +355,6 @@ ALTER TABLE `sesiones`
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
--- Indices de la tabla `tareas`
---
-ALTER TABLE `tareas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `unidad_id` (`unidad_id`),
-  ADD KEY `asignado_a` (`asignado_a`);
-
---
 -- Indices de la tabla `unidades`
 --
 ALTER TABLE `unidades`
@@ -382,6 +373,12 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `abreviaturas`
+--
+ALTER TABLE `abreviaturas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `logs`
@@ -414,12 +411,6 @@ ALTER TABLE `registros_actividad`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `registros_tareas`
---
-ALTER TABLE `registros_tareas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `restablecimientos_contrasena`
 --
 ALTER TABLE `restablecimientos_contrasena`
@@ -441,12 +432,6 @@ ALTER TABLE `roles_permisos`
 -- AUTO_INCREMENT de la tabla `sesiones`
 --
 ALTER TABLE `sesiones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tareas`
---
-ALTER TABLE `tareas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -484,13 +469,6 @@ ALTER TABLE `registros_actividad`
   ADD CONSTRAINT `registros_actividad_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `registros_tareas`
---
-ALTER TABLE `registros_tareas`
-  ADD CONSTRAINT `registros_tareas_ibfk_1` FOREIGN KEY (`tarea_id`) REFERENCES `tareas` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `registros_tareas_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
-
---
 -- Filtros para la tabla `restablecimientos_contrasena`
 --
 ALTER TABLE `restablecimientos_contrasena`
@@ -508,13 +486,6 @@ ALTER TABLE `roles_permisos`
 --
 ALTER TABLE `sesiones`
   ADD CONSTRAINT `sesiones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `tareas`
---
-ALTER TABLE `tareas`
-  ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`unidad_id`) REFERENCES `unidades` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `tareas_ibfk_2` FOREIGN KEY (`asignado_a`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `usuarios`

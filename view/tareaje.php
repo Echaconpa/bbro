@@ -6,31 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tareaje</title>
     <link rel="stylesheet" href="/bbro/public/css/tareaje.css">
-<<<<<<< HEAD
-=======
     <link rel="stylesheet" href="/bbro/public/css/dashboard.css">
->>>>>>> 23ba4e6 (Primeros cambios)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 </head>
 
 <body>
-<<<<<<< HEAD
-        
-        <?php include 'view/sidebar.php'; ?><!-- Incluir la barra lateral de navegación -->
-    <div class="main-content">
-        <div class="top-bar">
-            <!-- Barra superior con búsqueda y avatar del usuario -->
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar...">
-            </div>
-            <div class="user-info">
-                <img src="/bbro/public/img/user-avatar.png" alt="User Avatar" class="user-avatar">
-                <?php $username = $username ?? 'Invitado'; ?>
-                <span><?php echo htmlspecialchars($username, ENT_QUOTES, 'UTF-8'); ?></span>
-            </div>
-        </div>
-
-=======
 
     <?php include 'view/sidebar.php'; ?><!-- Incluir la barra lateral de navegación -->
     <div class="main-content">
@@ -45,7 +25,6 @@
             </div>
 
         </div>
->>>>>>> 23ba4e6 (Primeros cambios)
         <div class="content">
             <h1>Sistema de Gestión del Centro de Operaciones y Control (SGCOC)</h1>
 
