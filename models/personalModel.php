@@ -62,6 +62,8 @@ class PersonalModel {
             return false;
         }
     }
+
+    // Regitrar fechas SUCAMEC
     public function updateSucamec($personal_id, $emi_sucamec, $cad_sucamec) {
         try {
             $stmt = $this->pdo->prepare('UPDATE personal SET emi_sucamec = ?, cad_sucamec = ? WHERE id = ?');

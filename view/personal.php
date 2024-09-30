@@ -45,6 +45,8 @@
                             <th>Tel. Contacto</th>
                             <th>Hijos</th>
                             <th>Curso SUCAMEC</th>
+                            <th>F. Emi-SUCAMEC</th>
+                            <th>F. Cad-SUCAMEC</th>
                             <th>F. de Nacimiento</th>
                             <th>F. de Ingreso BB</th>
                             <th>Cargo</th>
@@ -65,6 +67,8 @@
                                 <td><?php echo htmlspecialchars($personal['telefono_contacto'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($personal['hijos'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($personal['curso_sucamec'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['emi_sucamec'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['cad_sucamec'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($personal['fecha_nacimiento'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($personal['fecha_ingreso_bb'], ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($personal['cargo'], ENT_QUOTES, 'UTF-8'); ?></td>
@@ -180,7 +184,7 @@
                             <p><strong>Dirección:</strong> <span id="personal-direccion-modal"></span></p>
                             <p><strong>Teléfono de Contacto:</strong> <span id="personal-contacto-modal"></span></p>
                             <p><strong>Hijos:</strong> <span id="personal-hijos-modal"></span></p>
-                            <p><strong>Curso SUCAMEC:</strong> <span id="personal-sucamec-modal"></span></p>
+                            <!--<p><strong>Curso SUCAMEC:</strong> <span id="personal-sucamec-modal"></span></p>-->
                             <p><strong>Fecha de Nacimiento:</strong> <span id="personal-nacimiento-modal"></span></p>
                             <p><strong>Fecha de Ingreso Big Bro:</strong> <span id="personal-ingreso-modal"></span></p>
                             <p><strong>Cargo:</strong> <span id="personal-cargo-modal"></span></p>
@@ -191,7 +195,6 @@
             </div>
         </div>
 
-        <!-- Modal para SUCAMEC -->
         <!-- Modal para registro de SUCAMEC -->
         <div id="registro-sucamec-modal" class="modal">
             <div class="modal-content">

@@ -24,6 +24,8 @@ $routes = [
         'personal' => [new PersonalController(), 'personal_view'], // Vista del personal
         'get_personal' => [new PersonalController(), 'get_personal'], // Ruta para obtener datos de personal
         'view_personal' => [new PersonalController(), 'view_personal'], // Vista de un personal específico
+        'get_sucamec' => [new PersonalController(), 'get_sucamec'], //Vista de SUCAMEC-PERSONAL
+
 
         // Rutas para el módulo de Unidades
         'unidades' => [new UnidadesController(), 'unidades_view'], // Nueva ruta para visualizar todas las unidades
