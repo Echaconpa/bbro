@@ -41,6 +41,7 @@ $routes = [
         'updatePersonal' => [new PersonalController(), 'update_personal'], // Ruta para actualizar personal
         'deletePersonal' => [new PersonalController(), 'delete_personal'], // Ruta para eliminar personal
         'asignarUnidad' => [new PersonalController(), 'asignar_unidad'], // Nueva ruta para asignar una unidad a un personal
+        'registroSucamec' => [new PersonalController(), 'registro_sucamec'], // Ruta para registrar datos de SUCAMEC
         // Rutas para el módulo de Unidades
         'addUnidad' => [new UnidadesController(), 'add_unidad'], // Nueva ruta para agregar una unidad
         'updateUnidad' => [new UnidadesController(), 'update_unidad'], // Nueva ruta para actualizar una unidad

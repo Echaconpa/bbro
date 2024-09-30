@@ -25,18 +25,22 @@ function setupEventListeners() {
     const asignarModal = document.querySelector('#asignar-unidad-modal');  // Modal de Asignar Unidad
     const closeAsignarModalBtn = document.querySelector('#close-asignar-modal');
     const asignarForm = document.querySelector('#asignar-unidad-form'); // Formulario de Asignar Unidad
+    const registroSucamecBtn = document.querySelector('#registro-sucamec-btn');
+    const sucamecModal = document.querySelector('#registro-sucamec-modal');
+    const closeSucamecModalBtn = document.querySelector('#close-sucamec-modal');
+    const sucamecForm = document.querySelector('#registro-sucamec-form');
     let selectedPersonalId = null; // Variable para almacenar el ID del personal seleccionado
     let selectedRow = null; // Variable para almacenar la fila seleccionada
 
     userDropdown.addEventListener("click", function () {
         dropdownMenu.classList.toggle("show"); // Mostrar/ocultar el menú desplegable
-      });
-    
-      document.addEventListener("click", function (event) {
+    });
+
+    document.addEventListener("click", function (event) {
         if (!userDropdown.contains(event.target)) {
-          dropdownMenu.classList.remove("show"); // Ocultar el menú si se hace clic fuera
+            dropdownMenu.classList.remove("show"); // Ocultar el menú si se hace clic fuera
         }
-      });
+    });
 
     // Abrir modal para nuevo registro
     if (nuevoRegistroBtn) {
@@ -50,7 +54,7 @@ function setupEventListeners() {
     // Manejar la selección de filas en la tabla
     const rows = document.querySelectorAll('#tablaPersonal tbody tr');
     rows.forEach(row => {
-        row.addEventListener('click', function() {
+        row.addEventListener('click', function () {
             // Remover la clase 'selected' de la fila previamente seleccionada, si existe
             if (selectedRow) {
                 selectedRow.classList.remove('selected');
@@ -61,7 +65,32 @@ function setupEventListeners() {
             selectedRow = this;
         });
     });
+    // Abrir modal de registro SUCAMEC si el curso está activo
+    if (registroSucamecBtn) {
+        registroSucamecBtn.addEventListener('click', function () {
+            const selectedRow = document.querySelector('tr.selected'); // Obtener la fila seleccionada
+            if (selectedRow) {
+                const sucamecStatus = selectedRow.querySelector('td:nth-child(10)').textContent.trim(); // Columna de Curso SUCAMEC
+                if (sucamecStatus === 'Activo') {
+                    selectedPersonalId = selectedRow.getAttribute('data-id');
+                    document.querySelector('#personal-id-sucamec').value = selectedPersonalId;
+                    showModal(sucamecModal); // Mostrar el modal
+                } else {
+                    alert('El curso SUCAMEC debe estar en estado Activo para registrar la emisión y caducidad.');
+                }
+            } else {
+                alert('Seleccione un personal para registrar el SUCAMEC.');
+            }
+        });
+    }
 
+    // Cerrar modal de SUCAMEC
+    if (closeSucamecModalBtn) {
+        closeSucamecModalBtn.addEventListener('click', function () {
+            closeModal(sucamecModal);
+        });
+    }
+    
     // Abrir modal para asignar unidad
     if (asignarUnidadBtn) {
         asignarUnidadBtn.addEventListener('click', function () {
@@ -87,49 +116,89 @@ function setupEventListeners() {
         });
     }
 
-// Enviar el formulario para asignar la unidad al personal
-asignarForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const formData = new FormData(asignarForm);
-    formData.append('personal_id', selectedPersonalId);
+    // Enviar el formulario de SUCAMEC
+    sucamecForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(sucamecForm);
+        formData.append('personal_id', selectedPersonalId);
 
-    fetch('/bbro/asignarUnidad', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            Swal.fire({
-                title: '¡Éxito!',
-                text: data.message || 'Unidad asignada correctamente.',
-                icon: 'success',
-                confirmButtonText: 'Aceptar'
-            }).then(() => {
-                closeModal(asignarModal);
-                location.reload();
-            });
-        } else {
+        fetch('/bbro/registroSucamec', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: data.message || 'Registro SUCAMEC actualizado correctamente.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }).then(() => {
+                    closeModal(sucamecModal);
+                    location.reload();
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error',
+                    text: data.message || 'No se pudo registrar SUCAMEC.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
             Swal.fire({
                 title: 'Error',
-                text: data.message || 'No se pudo asignar la unidad.',
+                text: 'Hubo un problema al registrar SUCAMEC.',
                 icon: 'error',
                 confirmButtonText: 'Aceptar'
             });
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
-            title: 'Error',
-            text: 'Hubo un problema al asignar la unidad.',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
         });
     });
-});
 
+    // Enviar el formulario para asignar la unidad al personal
+    asignarForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(asignarForm);
+        formData.append('personal_id', selectedPersonalId);
 
+        fetch('/bbro/asignarUnidad', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: data.message || 'Unidad asignada correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then(() => {
+                        closeModal(asignarModal);
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error',
+                        text: data.message || 'No se pudo asignar la unidad.',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Hubo un problema al asignar la unidad.',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            });
+    });
 
     // Cerrar modal de registro
     if (closeModalBtn) {
@@ -156,7 +225,7 @@ asignarForm.addEventListener('submit', function (event) {
 
     // Manejar la edición de personal
     editButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const personalId = this.dataset.id;
             fetchPersonalData(personalId, modal, form);
         });
@@ -164,21 +233,21 @@ asignarForm.addEventListener('submit', function (event) {
 
     // Manejar la visualización de personal
     viewButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const personalId = this.dataset.id;
             fetchPersonalDataForView(personalId, viewModal);
         });
     });
 
     // Manejar el envío del formulario para guardar o actualizar personal
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
         savePersonalData(form, modal);
     });
 
     // Manejar la eliminación de personal
     deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const personalId = this.dataset.id;
             deletePersonal(personalId);
         });
@@ -275,19 +344,19 @@ function savePersonalData(form, modal) {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            closeModal(modal);
-            location.reload();
-        } else {
-            alert('Error al guardar los datos del personal');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Hubo un problema al guardar los datos del personal.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                closeModal(modal);
+                location.reload();
+            } else {
+                alert('Error al guardar los datos del personal');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un problema al guardar los datos del personal.');
+        });
 }
 
 // Asignar una unidad al personal
@@ -298,19 +367,19 @@ function assignUnitToPersonal(form) {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Unidad asignada correctamente');
-            location.reload();
-        } else {
-            alert(data.message || 'Error al asignar la unidad');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Hubo un problema al asignar la unidad.');
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Unidad asignada correctamente');
+                location.reload();
+            } else {
+                alert(data.message || 'Error al asignar la unidad');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Hubo un problema al asignar la unidad.');
+        });
 }
 
 // Eliminar un personal
@@ -325,17 +394,17 @@ function deletePersonal(personalId) {
                 id: personalId
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert(data.message || 'Error al eliminar el personal');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un problema al eliminar el personal.');
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert(data.message || 'Error al eliminar el personal');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un problema al eliminar el personal.');
+            });
     }
 }

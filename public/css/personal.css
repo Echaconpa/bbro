@@ -12,7 +12,7 @@ h1 {
 }
 
 /* Botones de acción (Nuevo Registro y Asignar Unidad) */
-.asistencia-button, .asignar-unidad-button {
+.asistencia-button, .asignar-unidad-button, .sucamec-button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 1.2em;
@@ -23,7 +23,7 @@ h1 {
     text-align: center;
 }
 
-.asistencia-button:hover, .asignar-unidad-button:hover {
+.asistencia-button:hover, .asignar-unidad-button:hover, .sucamec-butto:hover {
     background-color: #e6b800;
 }
 

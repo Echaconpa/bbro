@@ -1,7 +1,7 @@
 <?php
 
 require_once 'config/config.php';
-
+require_once 'models/personalModel.php';
 class PersonalController {
 
     // Vista de mantenimiento de personal
@@ -205,4 +205,33 @@ class PersonalController {
         }
     }
     
+    public function registro_sucamec() {
+        global $pdo;
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $personal_id = $_POST['personal_id'] ?? null;
+            $emi_sucamec = $_POST['emi_sucamec'] ?? null;
+            $cad_sucamec = $_POST['cad_sucamec'] ?? null;
+    
+            // Verificar si los datos están presentes
+            if ($personal_id && $emi_sucamec && $cad_sucamec) {
+                // Instanciar el modelo y realizar la actualización
+                try {
+                    $personalModel = new PersonalModel($pdo); // Instanciar el modelo
+                    $updated = $personalModel->updateSucamec($personal_id, $emi_sucamec, $cad_sucamec);
+    
+                    if ($updated) {
+                        echo json_encode(['success' => true]);
+                    } else {
+                        throw new Exception('Error al actualizar SUCAMEC');
+                    }
+                } catch (Exception $e) {
+                    error_log('Error en registro SUCAMEC: ' . $e->getMessage());
+                    echo json_encode(['success' => false, 'message' => 'Error al actualizar los datos de SUCAMEC.']);
+                }
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Datos incompletos']);
+            }
+        }
+    }
 }    

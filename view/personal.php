@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,7 @@
 <body>
     <?php include 'view/sidebar.php'; ?>
     <div class="main-content">
-    <div class="top-bar">
+        <div class="top-bar">
             <div class="user-info">
                 <img src="/bbro/public/img/user-avatar.png" alt="User Avatar" class="user-avatar" id="userDropdown">
                 <?php $username = $username ?? 'Invitado'; ?>
@@ -26,10 +27,10 @@
         <div class="content">
             <h1>Mantenimiento de Personal</h1>
             <div class="button-container">
-    <button id="nuevo-registro-btn" class="asistencia-button">Nuevo Registro</button>
-    <button id="asignar-unidad-btn" class="asignar-unidad-button">Asignar Unidad</button>
-</div>
-
+                <button id="nuevo-registro-btn" class="asistencia-button">Nuevo Registro</button>
+                <button id="asignar-unidad-btn" class="asignar-unidad-button">Asignar Unidad</button>
+                <button id="registro-sucamec-btn" class="sucamec-button">Registro SUCAMEC</button>
+            </div>
             <div class="table-container">
                 <table id="tablaPersonal" class="display">
                     <thead>
@@ -52,36 +53,36 @@
                         </tr>
                     </thead>
                     <tbody>
-    <?php foreach ($personales as $personal): ?>
-        <tr data-id="<?php echo htmlspecialchars($personal['id'], ENT_QUOTES, 'UTF-8'); ?>">
-            <td><?php echo htmlspecialchars($personal['id'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['nombres'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['apellidos'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['dni'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['estado_civil'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['telefono_personal'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['direccion'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['telefono_contacto'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['hijos'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['curso_sucamec'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['fecha_nacimiento'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['fecha_ingreso_bb'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['cargo'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td><?php echo htmlspecialchars($personal['observaciones'], ENT_QUOTES, 'UTF-8'); ?></td>
-            <td>
-                <button class="action-button edit-button" data-id="<?php echo $personal['id']; ?>">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <button class="action-button delete-button" data-id="<?php echo $personal['id']; ?>">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-                <button class="action-button view-button" data-id="<?php echo $personal['id']; ?>">
-                    <i class="fas fa-eye"></i>
-                </button>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</tbody>
+                        <?php foreach ($personales as $personal): ?>
+                            <tr data-id="<?php echo htmlspecialchars($personal['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                                <td><?php echo htmlspecialchars($personal['id'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['nombres'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['apellidos'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['dni'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['estado_civil'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['telefono_personal'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['direccion'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['telefono_contacto'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['hijos'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['curso_sucamec'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['fecha_nacimiento'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['fecha_ingreso_bb'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['cargo'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($personal['observaciones'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td>
+                                    <button class="action-button edit-button" data-id="<?php echo $personal['id']; ?>">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-button delete-button" data-id="<?php echo $personal['id']; ?>">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button class="action-button view-button" data-id="<?php echo $personal['id']; ?>">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -144,13 +145,13 @@
             </div>
         </div>
 
-                <!-- Modal para asignar unidad -->
-                <div id="asignar-unidad-modal" class="modal">
+        <!-- Modal para asignar unidad -->
+        <div id="asignar-unidad-modal" class="modal">
             <div class="modal-content">
                 <span id="close-asignar-modal" class="close">&times;</span>
                 <h2>Asignar Unidad</h2>
                 <form id="asignar-unidad-form">
-                <input type="hidden" id="personal-id-asignar" name="personal_id">  <!-- Campo oculto para el ID del personal -->
+                    <input type="hidden" id="personal-id-asignar" name="personal_id"> <!-- Campo oculto para el ID del personal -->
                     <label for="unidad">Seleccionar Unidad:</label>
                     <select id="unidad" name="unidad">
                         <?php foreach ($unidades as $unidad): ?>
@@ -170,7 +171,7 @@
                 <span id="close-view-modal" class="close">&times;</span>
                 <div class="card-container">
                     <div class="card">
-                    <img src="/bbro/public/img/personal/<?php echo htmlspecialchars($personal['foto'], ENT_QUOTES, 'UTF-8'); ?>" alt="Foto del Personal" class="personal-photo" id="personal-photo-modal">
+                        <img src="/bbro/public/img/personal/<?php echo htmlspecialchars($personal['foto'], ENT_QUOTES, 'UTF-8'); ?>" alt="Foto del Personal" class="personal-photo" id="personal-photo-modal">
                         <div class="card-content">
                             <h2 id="personal-name-modal">Nombre del Personal</h2>
                             <p><strong>DNI:</strong> <span id="personal-dni-modal"></span></p>
@@ -189,10 +190,30 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal para SUCAMEC -->
+        <!-- Modal para registro de SUCAMEC -->
+        <div id="registro-sucamec-modal" class="modal">
+            <div class="modal-content">
+                <span id="close-sucamec-modal" class="close">&times;</span>
+                <h2>Registro SUCAMEC</h2>
+                <form id="registro-sucamec-form">
+                    <input type="hidden" id="personal-id-sucamec" name="personal_id"> <!-- Campo oculto para el ID del personal -->
+
+                    <label for="emi_sucamec">Fecha de Emisión SUCAMEC:</label>
+                    <input type="date" id="emi_sucamec" name="emi_sucamec" required>
+
+                    <label for="cad_sucamec">Fecha de Caducidad SUCAMEC:</label>
+                    <input type="date" id="cad_sucamec" name="cad_sucamec" required>
+
+                    <button type="submit">Guardar</button>
+                </form>
+            </div>
+        </div>
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         <script src="/bbro/public/js/personal.js"></script>
 </body>
-
 </html>

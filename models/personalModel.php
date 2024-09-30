@@ -62,4 +62,14 @@ class PersonalModel {
             return false;
         }
     }
+    public function updateSucamec($personal_id, $emi_sucamec, $cad_sucamec) {
+        try {
+            $stmt = $this->pdo->prepare('UPDATE personal SET emi_sucamec = ?, cad_sucamec = ? WHERE id = ?');
+            return $stmt->execute([$emi_sucamec, $cad_sucamec, $personal_id]);
+        } catch (PDOException $e) {
+            error_log('Error al actualizar los datos de SUCAMEC: ' . $e->getMessage());
+            return false;
+        }
+    }
+    
 }
